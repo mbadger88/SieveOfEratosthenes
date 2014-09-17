@@ -1,0 +1,13 @@
+#! /usr/bin/python3
+
+num = int(input("Enter the number you would like to see all primes up to: "))
+
+nums = [2]
+nums= nums+list((range(3,num+1,2)))
+non = list(range(2,num+1, 2))
+for i in range (3, num):
+    if i**2 > num:
+        print(i)
+        break
+#print(*nums, sep='\n')
+#print(*non, sep='\n')
