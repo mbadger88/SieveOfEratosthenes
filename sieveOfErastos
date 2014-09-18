@@ -2,12 +2,26 @@
 
 num = int(input("Enter the number you would like to see all primes up to: "))
 
-nums = [2]
-nums= nums+list((range(3,num+1,2)))
-non = list(range(2,num+1, 2))
-for i in range (3, num):
-    if i**2 > num:
-        print(i)
-        break
-#print(*nums, sep='\n')
-#print(*non, sep='\n')
+nums = set([2])
+nums.update(set((range(3,num+1,2)))) #create a set of numbers with all evens
+#except 2 removed based on the input number
+non = set(range(2,num+1, 2)) #all the even numbers except two 
+
+for i in range (3, num):   # for loop to iterate through all numbers 
+    if i in nums:    #check to see if the number is in the set, if so continue
+#if not, then the number has already been removed and can be skipped
+
+        if i**2 > num: #if i squared is greater than number we're currently
+#checking, then we know that we have found all the primes and can break the
+#rest of the for loop
+            break
+        for j in range (2*i , num+1, i): #starting after the first iteration
+#loop through the multiples of the current number and if the number is in the
+#prime set, remove it and add it to the non prime set
+            if j in nums:	
+                nums.remove(j)
+                non.add(j)
+print("All of the prime numbers are: ")
+print(nums)
+print("All of the non prime numbers are: ")
+print(non)
